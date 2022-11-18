@@ -1,0 +1,37 @@
+import numpy as np
+
+
+
+class L2_Regularizer:
+    """
+    Ridge Regression
+    motivation: avoid overfitting of the model
+    alpha(lambda): regularization parameter, control the constraint strength
+    """
+    def __init__(self, alpha):
+        self.alpha = alpha
+        pass
+
+    def calculate_gradient(self, weights):
+        return self.alpha * weights
+
+    def norm(self, weights):
+        return self.alpha * np.sum(np.square(weights))
+
+
+class L1_Regularizer:
+    """
+    Lasso Regression
+    motivation: Get sparse weight matrix
+    alpha(lambda): regularization parameter, control the constraint strength
+    """
+    def __init__(self, alpha):
+        self.alpha = alpha
+        pass
+
+    def calculate_gradient(self, weights):
+        return self.alpha * np.sign(weights)
+
+    def norm(self, weights):
+        return self.alpha * np.sum(np.abs(weights))
+
